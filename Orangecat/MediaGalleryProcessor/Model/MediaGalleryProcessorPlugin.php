@@ -36,12 +36,13 @@ class MediaGalleryProcessorPlugin extends \Magento\Catalog\Model\ProductReposito
     public function aroundProcessMediaGallery(\Magento\Catalog\Model\ProductRepository\MediaGalleryProcessor $subject, \Closure $proceed, $product, $mediaGalleryEntries)
     {
         foreach ($mediaGalleryEntries as $k => $entry) {
-            if(isset($entry['content'][ImageContentInterface::BASE64_ENCODED_DATA]) && $entry['content'][ImageContentInterface::BASE64_ENCODED_DATA] == ''):
+            if(isset($entry['content']['data'][ImageContentInterface::BASE64_ENCODED_DATA]) && $entry['content']['data'][ImageContentInterface::BASE64_ENCODED_DATA] == ''):
                 $mediaImportPath = BP.'/pub/media/import/';
                 if (isset($entry['file']) && !empty($entry['file']) && file_exists($mediaImportPath.$entry['file'])):
                     $imagedata = file_get_contents($mediaImportPath.$entry['file']);
-                    $entry['content'][ImageContentInterface::BASE64_ENCODED_DATA] = base64_encode($imagedata);
-                    $mediaGalleryEntries[$k]['content'][ImageContentInterface::BASE64_ENCODED_DATA] = base64_encode($imagedata);
+                    $base64image = base64_encode($imagedata);
+                    $entry['content']['data'][ImageContentInterface::BASE64_ENCODED_DATA] = $base64image;
+                    $mediaGalleryEntries[$k]['content']['data'][ImageContentInterface::BASE64_ENCODED_DATA] = $base64image;
                 endif;
             endif;
         }
