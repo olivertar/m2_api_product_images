@@ -1,0 +1,17 @@
+{
+    "name": "olivertar/m2_api_product_images",
+    "require": {
+        "magento/framework": ">=100.0.0",
+        "php": "~5.5.0|~5.6.0|>=7.0.0"
+    },
+    "type": "magento2-module",
+    "minimum-stability": "stable",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Orangecat\\MediaGalleryProcessor\\": ""
+        }
+    }
+}
