@@ -16,41 +16,44 @@ The client asked to upload the images to the server via FTP as an alternative.
 
 This plugin modifies the behavior of Magento 2 so that through the API, it only receives the name of the image. For everything to work and magic to occur the physical file of the image must be in "pub/media/import"
 
-The plugin verifies that 3 conditions are met:<br/>
-1- The "file" field is not empty<br/>
-2- The "base64EncodedData" field is empty<br/>
-3- An image with the name included in the "file" field exists in the "pub/media/import" folder in the Magento 2 installation.<br/>
+The plugin verifies that 3 conditions are met:
+1. The "file" field is not empty
+2. The "base64EncodedData" field is empty
+3. An image with the name included in the "file" field exists in the "pub/media/import" folder in the Magento 2 installation.
 
 ## JSON message example
-
-{<br/>
-  "product": {<br/>
-  "sku": "test-product",<br/>
-  "name": "Test Product",<br/>
-  "attributeSetId": 4,<br/>
-  "price": 99,<br/>
-  "status": 1,<br/>
-  "typeId": "simple",<br/>
-  "weight": 1,<br/>
-  "mediaGalleryEntries": [{<br/>
-            "mediaType": "image",<br/>
-            "label": "Test Product Image",<br/>
-            "position": 1,<br/>
-            "disabled": false,<br/>
-            "file": "test_image.png",<br/>
-		    "types": [<br/>
-				"image",<br/>
-				"thumbnail",<br/>
-				"small_image"<br/>
-		    ],<br/>
-            "content": {<br/>
-                "base64EncodedData": "",<br/>
-                "type": "image/png",<br/>
-                "name": "test_image.png"<br/>
-            }<br/>
-        }]<br/>
-}<br/>
-}<br/>
+```JSON
+{
+    "product": {
+        "sku": "test-product",
+        "name": "Test Product",
+        "attributeSetId": 4,
+        "price": 99,
+        "status": 1,
+        "typeId": "simple",
+        "weight": 1,
+        "mediaGalleryEntries": [
+            {
+                "mediaType": "image",
+                "label": "Test Product Image",
+                "position": 1,
+                "disabled": false,
+                "file": "test_image.png",
+                "types": [
+                    "image",
+                    "thumbnail",
+                    "small_image"
+                ],
+                "content": {
+                    "base64EncodedData": "",
+                    "type": "image/png",
+                    "name": "test_image.png"
+                }
+            }
+        ]
+    }
+}
+```
 
 ## Donation
 If you have used this module consider the possibility of making a donation
